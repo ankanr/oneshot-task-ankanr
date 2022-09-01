@@ -18,7 +18,10 @@ app.use('/colleges', collegesRoute);
 
 app.use('/students', studentRoute);
 
-mongoose.connect(process.env.MONGODB_URI, () => {});
+mongoose.connect(
+  process.env.MONGODB_URI || process.env.DB_CONNECTION,
+  () => {}
+);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));
